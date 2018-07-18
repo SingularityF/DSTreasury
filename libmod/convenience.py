@@ -1,8 +1,11 @@
 import tkinter as tk
 import tkinter.filedialog
 import pandas as pd
+import glob
+import os
 
 class Input:
+    filename=""
     path2file=""
     path2files=[]
     def path_gui(self,message=""):
@@ -16,6 +19,7 @@ class Input:
             self.path2files=list(tk.filedialog.askopenfilenames())
             try:
                 self.path2file=self.path2files[0]
+                self.filename=os.path.basename(self.path2file).split(".")[0]
             except:
                 pass
             tk_root.destroy()
@@ -23,6 +27,7 @@ class Input:
             self.path2files=glob.glob(tk.filedialog.askdirectory()+"/*")
             try:
                 self.path2file=self.path2files[0]
+                self.filename=os.path.basename(self.path2file).split(".")[0]
             except:
                 pass
             tk_root.destroy()
