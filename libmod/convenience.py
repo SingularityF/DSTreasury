@@ -9,8 +9,9 @@ class Input:
         """Run Tk window to choose files        
         """
         tk_root=tk.Tk()
-        tk_root.title("File select window")
+        tk_root.title("File selector")
         tk_root.configure(background='white')
+        tk_root.attributes("-topmost", True)
         def sel_files_callback(event):
             self.path2files=list(tk.filedialog.askopenfilenames())
             try:
