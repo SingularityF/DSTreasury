@@ -9,18 +9,19 @@ class Widgets:
         options: Create a dropdown list with options
         show_df_ui: Display a UI for viewing dataframes in Jupyter notebook
     """
-    def options(opts,callback=lambda x:print(x),label="Select"):
+    def options(opts,callback=lambda x:print(x),label="Select",default=""):
         """Create dropdown lists
         
         Parameters:
             opts: A list of options, should be unique
             callback: A callback function that takes options as parameter
             label: The label to prompt users what to choose
+            default: Default selected item
         """
         label_widget=widgets.Label(value=label)
         dropdown_widget=widgets.Dropdown(
         options=["",*opts],
-        value="",
+        value=default,
         disabled=False,
         )
         def on_change(change):
@@ -29,7 +30,7 @@ class Widgets:
         dropdown_widget.observe(on_change)
         return widgets.VBox([label_widget, dropdown_widget])
     
-    def show_df_ui(df,transpose=False,default="Hide"):
+    def show_df_ui(df,transpose=False,default="Hide",message="Show dataframe: "):
         """Display a UI for viewing dataframes in Jupyter notebook
         Parameters:
             df: Input dataframe
@@ -71,7 +72,7 @@ class Widgets:
         
         def refresh():
             Notebook.clear()
-            Widgets.show_df_ui(df,transpose=transpose)
+            Widgets.show_df_ui(df,transpose=transpose,message=message)
             
         def show_head_refresh(b):
             refresh()
@@ -109,7 +110,7 @@ class Widgets:
         btn_hide.on_click(hide_output_refresh)
         
         ui_group=widgets.HBox([
-        widgets.Label(value="Show dataframe: "),
+        widgets.Label(value=message),
         btn_head,
         btn_random,
         btn_tail,
