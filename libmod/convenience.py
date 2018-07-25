@@ -60,3 +60,10 @@ class Input:
         elif path.endswith("txt"):
             df=pd.read_table(path,encoding=enc)
         return df
+    
+class Output:
+    def prepare_dir(name):
+        """Create folders if they're not already there
+        """
+        if not os.path.exists(name):
+            os.makedirs(name)
