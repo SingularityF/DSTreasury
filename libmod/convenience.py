@@ -45,10 +45,10 @@ class Input:
         tk_root.mainloop()
         return self.path2files
     
-    def load_single(self,enc="utf-8"):
+    def load_single(self,sheetname=0,enc="utf-8"):
         """Load the first selected file and return dataframe
         """
-        return self.universal_load(self.path2file,enc=enc)
+        return self.universal_load(self.path2file,sheetname=sheetname,enc=enc)
     
     def universal_load(self,path,sheetname=0,enc="utf-8"):
         """Load dataframe by file extension
