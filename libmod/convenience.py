@@ -50,13 +50,13 @@ class Input:
         """
         return self.universal_load(self.path2file,enc=enc)
     
-    def universal_load(self,path,enc="utf-8"):
+    def universal_load(self,path,sheetname=0,enc="utf-8"):
         """Load dataframe by file extension
         """
         if path.endswith("csv"):
             df=pd.read_csv(path,encoding=enc)
         elif path.endswith("xlsx") or path.endswith("xls"):
-            df=pd.read_excel(path,encoding=enc)
+            df=pd.read_excel(path,sheetname=sheetname,encoding=enc)
         elif path.endswith("txt"):
             df=pd.read_table(path,encoding=enc)
         return df
