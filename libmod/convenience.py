@@ -45,18 +45,18 @@ class Input:
         tk_root.mainloop()
         return self.path2files
     
-    def load_single(self,sheetname=0,enc="utf-8"):
+    def load_single(self,sheet_name=0,enc="utf-8"):
         """Load the first selected file and return dataframe
         """
-        return self.universal_load(self.path2file,sheetname=sheetname,enc=enc)
+        return self.universal_load(self.path2file,sheet_name=sheet_name,enc=enc)
     
-    def universal_load(self,path,sheetname=0,enc="utf-8"):
+    def universal_load(self,path,sheet_name=0,enc="utf-8"):
         """Load dataframe by file extension
         """
         if path.endswith("csv"):
             df=pd.read_csv(path,encoding=enc)
         elif path.endswith("xlsx") or path.endswith("xls"):
-            df=pd.read_excel(path,sheetname=sheetname,encoding=enc)
+            df=pd.read_excel(path,sheet_name=sheet_name,encoding=enc)
         elif path.endswith("txt"):
             df=pd.read_table(path,encoding=enc)
         return df
