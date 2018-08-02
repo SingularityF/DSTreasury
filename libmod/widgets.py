@@ -9,15 +9,25 @@ class Widgets:
         options: Create a dropdown list with options
         show_df_ui: Display a UI for viewing dataframes in Jupyter notebook
     """
-    def options(opts,callback=lambda x:print(x),label="Select",default=""):
+    def options(opts,container=None,name=None,callback=None,label="Select",default=""):
         """Create dropdown lists
         
         Parameters:
             opts: A list of options, should be unique
+            container: A dictionary storing options
+            name: The item of dictionary to store the selected option
             callback: A callback function that takes options as parameter
             label: The label to prompt users what to choose
             default: Default selected item
         """
+        if callback==None:
+            if container!=None:
+                def callback(val):
+                    container[name]=val
+            else:
+                def callback(val):
+                    print(val)
+                
         label_widget=widgets.Label(value=label)
         dropdown_widget=widgets.Dropdown(
         options=["",*opts],
